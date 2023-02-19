@@ -36,7 +36,7 @@ Launcher
 
 
 Screenchot
-![alt text](examples/screenshot.png)
+![alt text](examples/Screenshot_2023-02-19-03-38-11_1366x768.png)
 
 Powermenu
 ![alt text](examples/Screenshot_2023-02-19-03-15-32_1366x768.png)
@@ -97,13 +97,10 @@ Based in: https://github.com/adi1090x/polybar-themes (docky style)
 | Cancel the preselection for the focused desktop | Super + Ctrl + Alt + Space |
 | Move a floating window | Super + Ctrl + {Left,Down,Up,Right} |
 | Custom move/resize | Alt + Super + {Left,Down,Up,Right} |
-| **Custom keybindigs** |  |
-| Google-Chrome | Super + Shift + g |
-| Firefox | Super + Shift + f |
+| **Custom keybindigs** | 
 | Files | Super + Shift + o |
-| Show IP | Super + Shift + i |
 | Rofi Screenshot | Super + Shift + s |
-| Rofi Runner | Super + Shift + r |
+
 
 ## **Wallpaper**
 
