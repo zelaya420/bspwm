@@ -1,28 +1,23 @@
 # **Dotfiles**
 Minimal bspwm config
 
-Contact-discord: https://discord.gg/rNnCZmXKWw
+![alt text](examples/Screenshot_2023-02-19-03-22-37_1366x768.png)
 
-![alt text](examples/theme.png)
-
-* Terminal: [gnome terminal](https://github.com/GNOME/gnome-terminal)
-
-* Text Editor: nano
+* Terminal: kitty
+* Text Editor: nvim
 * Window Manager: <a name="bspwm">Bspwm</a>
 * Shell: <a name="rofi">zsh</a>
 * Application Launcher: <a name="rofi">Rofi</a>
 * Panel: <a name="polybar">Polybar</a>
 * Shortcuts: <a name="sxhkd">sxhkd</a>
 
-
-
-Follow the instructions in `setup.sh`
+Follow the instructions in [YoutuBe](https://www.youtube.com/watch?v=HeRkG6udRVA)
 
 ## **Useful keybindigs to know...**
 
 |  Function | keybindigs |
 | --------------- | ------------- |
-| gnome-terminal  | ``Super + Return`` |
+| kitty  | ``Super + Return`` |
 | Change workspace | ``Super + (1-9)`` |
 | rofi launcher  | ``Super + d`` |
 | Google-Chrome  | ``Super + Shift + g`` |
@@ -36,13 +31,14 @@ Follow the instructions in `setup.sh`
 ## **Rofi**
 
 Launcher
-![alt text](examples/launcher.png)
+![alt text](examples/Screenshot_2023-02-19-03-15-19_1366x768.png)
+
 
 Screenchot
 ![alt text](examples/screenshot.png)
 
 Powermenu
-![alt text](examples/powermenu.png)
+![alt text](examples/Screenshot_2023-02-19-03-15-32_1366x768.png)
 
 ***
 ## **Polybar**
@@ -61,9 +57,9 @@ Based in: https://github.com/adi1090x/polybar-themes (docky style)
 
 * Workspaces
 
-* HTB vpn Left click: copy ip
+* HTB vpn 
 
-* Target Left click: copy ip
+* Target : Funccion ZSH copy ip
 
 * Spotify (Only deploys if it's active)
 
