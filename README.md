@@ -77,7 +77,7 @@ Based in: https://github.com/adi1090x/polybar-themes (docky style)
 | Launcher | Super + d |
 | Make sxhkd reload its configuration files | Super + Escape |
 | Quit/restart bspwm | Super + Alt + r |
-| Close and kill | Super + w |
+| Close and kill | Super + q |
 | Alternate between the tiled and monocle layout | Super + m |
 | Send the newest marked node to the newest preselected node | Super + y |
 | Swap the current node and the biggest node | Super + g |
