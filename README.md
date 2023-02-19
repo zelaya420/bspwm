@@ -19,9 +19,8 @@ Follow the instructions in [YoutuBe](https://www.youtube.com/watch?v=HeRkG6udRVA
 |  Function | keybindigs |
 | --------------- | ------------- |
 | kitty  | ``Super + Return`` |
-| Change workspace | ``Super + (1-9)`` |
+| Change workspace | ``Super + (1-6)`` |
 | rofi launcher  | ``Super + d`` |
-| Google-Chrome  | ``Super + Shift + g`` |
 | Close Window | ``Super + q``
 
 
@@ -90,9 +89,9 @@ Based in: https://github.com/adi1090x/polybar-themes (docky style)
 | Focus the next/previous desktop in the current monitor | Super + bracket{left,right} |
 | Focus the last node/desktop | Super + {grave,Tab} |
 | Focus the older or newer node in the focus history | Super + {o,i} |
-| Focus or send to the given desktop | Super + {_,shift + }{1-9,0} |
+| Focus or send to the given desktop | Super + {_,shift + }{1-6,0} |
 | Preselect the direction | Super + Ctrl + Alt + {Left,Down,Up,Right} |
-| Preselect the ratio | Super + Ctrl + {1-9} |
+| Preselect the ratio | Super + Ctrl + {1-6} |
 | Cancel the preselection for the focused node | Super + Ctrl + Space |
 | Cancel the preselection for the focused desktop | Super + Ctrl + Alt + Space |
 | Move a floating window | Super + Ctrl + {Left,Down,Up,Right} |
