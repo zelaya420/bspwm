@@ -31,7 +31,7 @@ Follow the instructions in [YoutuBe](https://www.youtube.com/watch?v=HeRkG6udRVA
 ## **Rofi**
 
 Launcher
-![Fondos](https://photos.app.goo.gl/4AHpthwBbpn9PnxWA)
+![alt text](examples/Screenshot_2023-02-19-03-15-19_1366x768.png)
 
 
 Screenchot
@@ -103,4 +103,4 @@ Based in: https://github.com/adi1090x/polybar-themes (docky style)
 
 ## **Wallpaper**
 
-![alt text](wallpaper_s4vitar.png)
+[Fondos](https://photos.app.goo.gl/4AHpthwBbpn9PnxWA)
