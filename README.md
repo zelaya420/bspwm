@@ -1,2 +1,0 @@
-# bspwm
-bspwm polybar parrot 
