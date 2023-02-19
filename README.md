@@ -4,6 +4,7 @@ Minimal bspwm config
 ![alt text](examples/Screenshot_2023-02-19-03-22-37_1366x768.png)
 
 * Terminal: kitty
+* [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
 * Text Editor: nvim
 * Window Manager: <a name="bspwm">Bspwm</a>
 * Shell: <a name="rofi">zsh</a>
@@ -21,7 +22,7 @@ Follow the instructions in [YoutuBe](https://www.youtube.com/watch?v=HeRkG6udRVA
 | Change workspace | ``Super + (1-9)`` |
 | rofi launcher  | ``Super + d`` |
 | Google-Chrome  | ``Super + Shift + g`` |
-| Close Window | ``Super + w``
+| Close Window | ``Super + q``
 
 
 <a name="sxhkd">More keybindigs</a>
@@ -61,7 +62,7 @@ Based in: https://github.com/adi1090x/polybar-themes (docky style)
 
 * Target : Funccion ZSH copy ip
 
-* Spotify (Only deploys if it's active)
+* [Spotify](https://github.com/PrayagS/polybar-spotify) 
 
 * And more...
 
