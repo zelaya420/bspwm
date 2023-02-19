@@ -31,7 +31,7 @@ Follow the instructions in [YoutuBe](https://www.youtube.com/watch?v=HeRkG6udRVA
 ## **Rofi**
 
 Launcher
-![alt text](examples/Screenshot_2023-02-19-03-15-19_1366x768.png)
+![Fondos](https://photos.app.goo.gl/4AHpthwBbpn9PnxWA)
 
 
 Screenchot
