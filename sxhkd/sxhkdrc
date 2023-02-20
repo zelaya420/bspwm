@@ -127,7 +127,7 @@ super + ctrl + {Left,Down,Up,Right}
 
 # Custom move/resize
 alt + super + {Left,Down,Up,Right}
-	 $HOME/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
+	~/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
 
 # CUSTOM keybindigs
@@ -135,17 +135,17 @@ alt + super + {Left,Down,Up,Right}
 # Google-Chrome
 
 super + shift + g
-	google-chrome
+	Brave
 
 # Firefox
 
 super + shift + f
-	firejail /opt/firefox/firefox
+  /usr/bin/firefox
 
 # Files
 
 super + shift + o
-	open thunar
+	thunar
 
 # Rofi Screenshot
 
