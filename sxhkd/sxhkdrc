@@ -127,7 +127,7 @@ super + ctrl + {Left,Down,Up,Right}
 
 # Custom move/resize
 alt + super + {Left,Down,Up,Right}
-	/home/d3b0/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
+	 $HOME/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
 
 # CUSTOM keybindigs
@@ -145,12 +145,7 @@ super + shift + f
 # Files
 
 super + shift + o
-	open ~
-
-# Show ip
-
-super + shift + i
-	~/.config/bin/show_ip.sh
+	open thunar
 
 # Rofi Screenshot
 
