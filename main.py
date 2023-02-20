@@ -76,7 +76,7 @@ def req():
     os.system("sudo apt install meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev libpcre3-dev -y")
     os.system("pip install Sphinx")
     os.system("sudo pip install Sphinx")
-    os.system("sudo apt install bspwm rofi caja feh gnome-terminal scrot neovim xclip tmux acpi scrub polybar neofetch nitrogen thunar lxappearance kitty betterlockscreen playerctl zsh pavucontrol wmname -y")
+    os.system("sudo apt install bspwm rofi caja feh gnome-terminal scrot neovim xclip tmux acpi scrub polybar neofetch nitrogen thunar lxappearance kitty betterlockscreen playerctl zsh pavucontrol wmname maim viewnior  -y")
     os.system(" cd .config")
     os.system("git clone https://github.com/noctuid/zscroll")
     os.system("cd zscroll")
