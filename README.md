@@ -37,6 +37,8 @@ chmod +x setup.sh
 
 ![overview3](/assets/overview3.png "overview3")
 
+![overview4](/assets/overview4.png "overview4")
+
 
 ## Keyboard shortcuts
 - <kbd>Windows</kbd> + <kbd>Enter</kbd>: Open a terminal emulator window (kitty).
