@@ -139,6 +139,12 @@ else
 
 	cd ..
 
+	git clone https://github.com/noctuid/zscroll
+    cd zscroll
+    sudo python3 setup.py install
+
+	cd ..
+
 	echo -e "\n${purpleColour}[*] Installing polybar...\n${endColour}"
 	sleep 2
 	git clone --recursive https://github.com/polybar/polybar
@@ -254,14 +260,17 @@ else
 	sleep 2
 	chmod -R +x ~/.config/bspwm/
 	chmod +x ~/.config/polybar/launch.sh
-	chmod +x ~/.config/polybar/shapes/scripts/*
+	chmod +x ~/.config/polybar/scripts/*
+	chmod +x ~/.config/polybar/pywal.sh
 	sudo chmod +x /usr/local/bin/whichSystem.py
 	sudo chmod +x /usr/local/bin/screenshot
 	sudo chmod +x /usr/local/share/zsh/site-functions/_bspc
 	sudo chown root:root /usr/local/share/zsh/site-functions/_bspc
 	sudo mkdir -p /root/.config/polybar/shapes/scripts/
-	sudo touch /root/.config/polybar/shapes/scripts/target
-	sudo ln -sfv ~/.config/polybar/shapes/scripts/target /root/.config/polybar/shapes/scripts/target
+	chmod +x ~/.config/rofi/powermenu.sh ~/.config/rofi/launcher.sh 
+	chmod +x ~/.config/sxhkd/sxhkdrc
+	chmod +x ~/.config/bin/*
+
 	cd ..
 	echo -e "\n${greenColour}[+] Done\n${endColour}"
 	sleep 1.5
