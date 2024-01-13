@@ -1,7 +1,5 @@
 #!/usr/bin/bash
 
-# Author: Juan Rivas (aka @r1vs3c)
-
 # Colours
 greenColour="\e[0;32m\033[1m"
 endColour="\033[0m\e[0m"
