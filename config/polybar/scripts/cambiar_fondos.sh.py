@@ -6,7 +6,7 @@ import random
 ruta_script_pywal = "~/.config/polybar/pywal.sh"
 
 # Ruta de la carpeta con las imágenes
-carpeta_imagenes = "~/Pictures/Wallapapers"
+carpeta_imagenes = "~/Wallpapers"
 
 # Obtener la ruta completa del script y del directorio de imágenes
 ruta_completa_script = os.path.expanduser(ruta_script_pywal)
