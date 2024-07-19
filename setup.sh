@@ -1,8 +1,22 @@
 #!/usr/bin/bash
 
+# Author: Juan Rivas (aka @r1vs3c)
+
 # Colours
 greenColour="\e[0;32m\033[1m"
-	@@ -18,283 +18,223 @@ user=$(whoami)
+endColour="\033[0m\e[0m"
+redColour="\e[0;31m\033[1m"
+blueColour="\e[0;34m\033[1m"
+yellowColour="\e[0;33m\033[1m"
+purpleColour="\e[0;35m\033[1m"
+turquoiseColour="\e[0;36m\033[1m"
+grayColour="\e[0;37m\033[1m"
+
+# Global variables
+dir=$(pwd)
+fdir="$HOME/.local/share/fonts"
+user=$(whoami)
+
 trap ctrl_c INT
 
 function ctrl_c(){
@@ -19,7 +33,7 @@ function banner(){
 	sleep 0.05
 	echo -e "/ /_/ // /_/ // /_ / /_/ /     _  /_/ /(__  )__  /_/ /_ |/ |/ /_  / / / / /"
 	sleep 0.05
-	echo -e "\__,_/ \__,_/ \__/ \____/      /_.___//____/ _  .___/____/|__/ /_/ /_/ /_/    ${endColour}${yellowColour}(${endColour}${grayColour}By ${endColour}${purpleColour}@zelaya420${endColour}${yellowColour})${endColour}${turquoiseColour}"
+	echo -e "\__,_/ \__,_/ \__/ \____/      /_.___//____/ _  .___/____/|__/ /_/ /_/ /_/    ${endColour}${yellowColour}(${endColour}${grayColour}By ${endColour}${purpleColour}@r1vs3c${endColour}${yellowColour})${endColour}${turquoiseColour}"
 	sleep 0.05
     	echo -e "                                             /_/${endColour}"
 }
@@ -33,7 +47,7 @@ else
 	sleep 1
 	echo -e "\n\n${blueColour}[*] Installing necessary packages for the environment...\n${endColour}"
 	sleep 2
-	sudo apt install -y kitty rofi feh xclip ranger  betterlockscreen playerctl  scrot scrub wmname cargo rustc imagemagick cmatrix htop neofetch python3-pip procps tty-clock fzf lsd bat pamixer flameshot
+	sudo apt install -y kitty rofi feh xclip ranger i3lock-fancy scrot scrub wmname imagemagick cmatrix htop neofetch python3-pip procps tty-clock fzf lsd bat pamixer flameshot
 	if [ $? != 0 ] && [ $? != 130 ]; then
 		echo -e "\n${redColour}[-] Failed to install some packages!\n${endColour}"
 		exit 1
@@ -41,18 +55,7 @@ else
 		echo -e "\n${greenColour}[+] Done\n${endColour}"
 		sleep 1.5
 	fi
-
-	echo -e "\n${blueColour}[*] Installing pywal...\n${endColour}"
-	sleep 2
-	sudo pip3 install pywal
-	if [ $? != 0 ] && [ $? != 130 ]; then
-		echo -e "\n${redColour}[-] Failed to install pywal or operation cancelled by user!\n${endColour}"
-		exit 1
-	else
-		echo -e "\n${greenColour}[+] Done\n${endColour}"
-		sleep 1.5
-	fi
-
+ 
 	echo -e "\n${blueColour}[*] Starting installation of necessary dependencies for the environment...\n${endColour}"
 	sleep 0.5
 
@@ -122,12 +125,6 @@ else
 		echo -e "\n${greenColour}[+] Done\n${endColour}"
 		sleep 1.5
 	fi
-
-	cd ..
-
-	git clone https://github.com/noctuid/zscroll
-    cd zscroll
-    sudo python3 setup.py install
 
 	cd ..
 
@@ -246,17 +243,13 @@ else
 	sleep 2
 	chmod -R +x ~/.config/bspwm/
 	chmod +x ~/.config/polybar/launch.sh
-	chmod +x ~/.config/polybar/scripts/*
-	chmod +x ~/.config/polybar/pywal.sh
+	chmod +x ~/.config/polybar/shapes/scripts/*
 	sudo chmod +x /usr/local/bin/whichSystem.py
-	sudo chmod +x /usr/local/bin/screenshot
 	sudo chmod +x /usr/local/share/zsh/site-functions/_bspc
 	sudo chown root:root /usr/local/share/zsh/site-functions/_bspc
 	sudo mkdir -p /root/.config/polybar/shapes/scripts/
-	chmod +x ~/.config/rofi/powermenu.sh ~/.config/rofi/launcher.sh 
-	chmod +x ~/.config/sxhkd/sxhkdrc
-	chmod +x ~/.config/bin/*
-
+	sudo touch /root/.config/polybar/shapes/scripts/target
+	sudo ln -sfv ~/.config/polybar/shapes/scripts/target /root/.config/polybar/shapes/scripts/target
 	cd ..
 	echo -e "\n${greenColour}[+] Done\n${endColour}"
 	sleep 1.5
