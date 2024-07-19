@@ -1,0 +1,267 @@
+;; Vars ;;
+
+;; Fetch
+(defpoll os :interval "24h" "/path/to/scripts/fetch os")
+(defpoll wm :interval "24h" "/path/to/scripts/fetch wm")
+
+;; Profile
+(defvar IMAGEP "/path/to/assets/profile.png")
+(defpoll username :interval "24h" "whoami")
+(defpoll hostname :interval "24h" "cat /etc/hostname")
+(defpoll uptime :interval "30s" "uptime -p | sed -E -e 's/hour(s)?/hrs/g' -e 's/minute(s)?/min/g'")
+
+;; Package Manager
+(defpoll updates :interval "2m" "apt list --upgradable | grep -c upgradable")
+(defpoll packages :interval "1h" "dpkg-query -f '${binary:Package}\n' -W | wc -l")
+
+;; Weather (Replace with actual weather fetching commands)
+(defpoll weathericon :interval "15m" "Weather icon")
+(defpoll weathercity :interval "15m" "Weather city")
+(defpoll weathertemp :interval "15m" "Weather current_temp")
+(defpoll weatherdesc :interval "15m" "Weather weather_desc")
+(defpoll weatherhex :interval "15m" "Weather hex")
+
+;; Networking
+(defpoll net_status :interval "3s" "/path/to/scripts/Network --status")
+(defpoll net_icon :interval "3s" "/path/to/scripts/Network --icon")
+
+;; Temp
+(defpoll temp :interval "5s" "/path/to/scripts/temp.sh")
+
+;; Battery (Uncomment if needed)
+;;(defpoll battery :interval "3s" "/path/to/scripts/Battery get_battery")
+;;(defpoll battery_icon :interval "3s" "/path/to/scripts/Battery get_icon")
+;;(defpoll battery_status :interval "3s" "/path/to/scripts/Battery get_status")
+
+;; Bluetooth
+(defpoll blue_icon :interval "3s" "/path/to/scripts/Bluetooth --icon")
+(defpoll blue_name :interval "3s" "/path/to/scripts/Bluetooth --name")
+
+;; Airplane Mode
+(defpoll airplane_icon :interval "3s" "/path/to/scripts/Airplane --icon")
+(defpoll airplane_status :interval "3s" "/path/to/scripts/Airplane --status")
+
+;; Redshift
+(defpoll redshift_status :interval "3s" "/path/to/scripts/Redshift state")
+
+;; Terminal selector
+(defpoll terminal_status :interval "2s" "cat /path/to/.term")
+
+;; GameMode
+(defpoll game_state :interval "2s" "/path/to/scripts/GameMode --status")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Widgets ;;
+
+(defwidget launchermenu []
+     (box :class "launchermenu"
+          :orientation "v"
+          :space-evenly "false"
+          :spacing 7
+          (closebtn)
+          (pfp)
+          (infokali)
+          (weather)
+          (system)
+          (tools)
+          (footer)
+  ))
+
+(defwidget closebtn []
+  (box :orientation "h" :space-evenly "false" :halign "end"
+    (eventbox :cursor "pointer"
+      (button :class "min" :onclick "eww -c ~/.config/eww open --toggle launchermenu" "󰅙")
+    )  
+  )
+)
+
+(defwidget pfp []
+	(box :orientation "h"
+		 :space-evenly "false"
+		 :class "usercard"
+		 (box :space-evenly "false"
+			  :hexpand true
+			  :width 320
+			  :orientation "h"
+			  :spacing "15"
+			  (box :style "background-image: url('${IMAGEP}');"
+				   :class "face"
+				   :halign "center")
+			  (box :orientation "v"
+				   :space-evenly "false"
+				   :hexpand true
+				   :valign "center"
+				   (box :class "user-host"
+						:halign "start"
+						(label :text username))
+			       (box :class "host"
+						:halign "start"
+						(label :text "@${hostname}"))
+				   (box :class "uptime"
+						:halign "start"
+						(label :text uptime)))
+			  (box :orientation "v"
+				   :space-evenly "false"
+				   :spacing 10
+				   :valign "center"
+				   :halign "start"
+				   :hexpand false
+				   (eventbox :cursor "pointer"
+				   (button :class "btn-info" :tooltip "Lock Computer" :onclick "physlock -d" "󱅞"))
+				   (eventbox :cursor "pointer"
+				   (button :class "btn-info" :tooltip "Logout BSPWM" :onclick "bspc quit" "󰍃")))
+		)
+	)
+)	  
+
+(defwidget infokali []
+  (box :orientation "h"
+       :space-evenly "false"
+       :spacing 7
+       (box :orientation "v"
+            :class "apt"
+            :hexpand true
+            (label :halign "start"
+                   :class "apt-icon"
+                   :text "󰮯")
+            (box :space-evenly "false"
+                 (eventbox :cursor "pointer"
+                           (button :class "apt-updates"
+                                   :halign "start"
+                                   :tooltip "Click to update"
+                                   :onclick "sudo apt update && sudo apt upgrade -y" "${updates} Updates"))))
+       (box :orientation "h"
+            :space-evenly "false"
+            :class "fetch"
+            :spacing 8
+            (label :class "kali-icon"
+                   :halign "start"
+                   :text "󰣇")
+            (box 
+                 :space-evenly "false"
+                 (box :orientation "v"
+                      :spacing 3
+                      :halign "end"
+                      :style "margin-left: 10px;"
+                      (label :class "os-icon" 
+                             :halign "start"
+                             :text "󰣇")
+                      (label :class "pkgs-icon"
+                             :halign "start"
+                             :text "󰮯")
+                      (label :class "wm-icon"
+                             :halign "start"
+                             :text "󱪳")))
+            (box 
+                 :space-evenly "false"
+                 (box :orientation "v"
+                      :spacing 3
+                      :halign "start"
+                      (label :class "os-text"
+                             :halign "start"
+                             :text os)
+                      (label :class "pkgs-text"
+                             :halign "start"
+                             :text packages)
+                      (label :class "wm-text"
+                             :halign "start"
+                             :text wm))))))
+
+(defwidget weather[] 
+  (box :orientation "h" :class "weatherboxfull" :space-evenly false
+	(box :orientation "v" :class "weatherbox" :hexpand true :space-evenly false
+      (box :orientation "h" :class "weathertop" :space-evenly false
+        (box :class "weatherdesc" :style "color: ${weatherhex};" :halign "start" :hexpand true weatherdesc)
+        (box :class "weathertemp" :halign "end" "${weathertemp}°C")
+      )
+      (box :orientation "v" :class "weatherbot" :space-evenly false
+        (box :class "weathercity" :halign "start" :hexpand true
+			 (label :limit-width 22 :text weathercity))
+      )
+    )
+      (box :class "weathericon" :style "color: ${weatherhex};" :halign "center" weathericon)
+  )
+)
+
+(defwidget system_progress [data icon css tip] 
+  (box  :class "progress" 
+    (circular-progress
+      :class css
+      :value data
+      :thickness 6
+      :tooltip tip
+      (overlay
+        :valign "center"
+        (label 
+          :class "icon" 
+          :text icon
+        )
+      )
+    )
+  )
+)
+
+(defwidget cpu [] 
+  (system_progress
+    :css "cpu"
+    :tip "CPU ${round(EWW_CPU.avg,0)}%"
+    :data {round(EWW_CPU.avg, 0)} 
+    :icon ""
+  )
+)
+
+(defwidget ram [] 
+  (system_progress
+    :css "ram"
+    :tip "RAM ${round(EWW_RAM.used_mem / 1048576, 2)}MB"
+    :data {round(EWW_RAM.used_mem_perc, 0)}
+    :icon ""
+  )
+)
+
+(defwidget disk [] 
+  (system_progress
+    :css "disk"
+    :tip "SSD ${round(EWW_DISK["/"].used_perc, 2)}%"
+    :data {round(EWW_DISK["/"].used_perc, 0)}
+    :icon ""
+  )
+)
+
+(defwidget system []
+  (box 
+    :class "system"
+    :spacing 8
+    (cpu)
+    (ram)
+    (disk)
+  )
+)
+
+(defwidget tools []
+  (box :orientation "v" :space-evenly "true" 
+    (box  :orientation "h" :space-evenly "true" :spacing 1
+
+      (box  :class "sys-tools" :orientation "v" :spacing 10
+        (button :onclick "bspc desktop -f next" :tooltip "Switch Desktop" :class "sys-tools" "")
+        (button :onclick "xfce4-terminal --drop-down" :tooltip "Dropdown Terminal" :class "sys-tools" "")
+        (button :onclick "pcmanfm" :tooltip "Files" :class "sys-tools" "")
+        (button :onclick "bsp-layout set next" :tooltip "Switch Layout" :class "sys-tools" "")
+        (button :onclick "xfce4-screenshooter" :tooltip "Screenshot" :class "sys-tools" "")
+        (button :onclick "firefox" :tooltip "Firefox" :class "sys-tools" "")
+        (button :onclick "mpv --no-video ~/.config/dunst/ding.ogg && systemctl suspend" :tooltip "Sleep" :class "sys-tools" "")
+      )
+    )
+  )
+)
+
+(defwidget footer []
+  (box :orientation "v" :space-evenly "true" :spacing 2
+    (box :orientation "h" :space-evenly "false"
+      (box :orientation "h" :spacing 2 :hexpand true
+        (button :class "info-icon" :onclick "eww close info" "")
+      )
+    )
+  )
+)
