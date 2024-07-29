@@ -1,20 +1,20 @@
 ;; Vars ;;
 
 ;; Fetch
-(defpoll os :interval "24h" "/path/to/scripts/fetch os")
-(defpoll wm :interval "24h" "/path/to/scripts/fetch wm")
+(defpoll os :interval "24h" "../eww/profilecard/scripts/fetch os")
+(defpoll wm :interval "24h" "../eww/profilecard/scripts/fetch wm")
 
 ;; Profile
-(defvar IMAGEP "/path/to/assets/profile.png")
+(defvar IMAGEP "../assets/profile.png")
 (defpoll username :interval "24h" "whoami")
 (defpoll hostname :interval "24h" "cat /etc/hostname")
 (defpoll uptime :interval "30s" "uptime -p | sed -E -e 's/hour(s)?/hrs/g' -e 's/minute(s)?/min/g'")
 
-;; Package Manager
-(defpoll updates :interval "2m" "apt list --upgradable | grep -c upgradable")
-(defpoll packages :interval "1h" "dpkg-query -f '${binary:Package}\n' -W | wc -l")
+;; Pacman
+(defpoll updates :interval "5m" "Updates --get-updates")
+(defpoll packages :interval "1h" "pacman -Q | wc -l")
 
-;; Weather (Replace with actual weather fetching commands)
+;; Weather
 (defpoll weathericon :interval "15m" "Weather icon")
 (defpoll weathercity :interval "15m" "Weather city")
 (defpoll weathertemp :interval "15m" "Weather current_temp")
@@ -22,37 +22,37 @@
 (defpoll weatherhex :interval "15m" "Weather hex")
 
 ;; Networking
-(defpoll net_status :interval "3s" "/path/to/scripts/Network --status")
-(defpoll net_icon :interval "3s" "/path/to/scripts/Network --icon")
+(defpoll net_status :interval "3s" "../eww/profilecard/scripts/Network --status")
+(defpoll net_icon :interval "3s" "../eww/profilecard/scripts/Network --icon")
 
 ;; Temp
-(defpoll temp :interval "5s" "/path/to/scripts/temp.sh")
+(defpoll temp :interval "5s" "../src/temp.sh")
 
-;; Battery (Uncomment if needed)
-;;(defpoll battery :interval "3s" "/path/to/scripts/Battery get_battery")
-;;(defpoll battery_icon :interval "3s" "/path/to/scripts/Battery get_icon")
-;;(defpoll battery_status :interval "3s" "/path/to/scripts/Battery get_status")
+;; Battery
+;;(defpoll battery :interval "3s" "../eww/profilecard/scripts/Battery get_battery")
+;;(defpoll battery_icon :interval "3s" "../eww/profilecard/scripts/Battery get_icon")
+;;(defpoll battery_status :interval "3s" "../eww/profilecard/scripts/Battery get_status")
 
 ;; Bluetooth
-(defpoll blue_icon :interval "3s" "/path/to/scripts/Bluetooth --icon")
-(defpoll blue_name :interval "3s" "/path/to/scripts/Bluetooth --name")
+(defpoll blue_icon :interval "3s" "../eww/profilecard/scripts/Bluetooth --icon")
+(defpoll blue_name :interval "3s" "../eww/profilecard/scripts/Bluetooth --name")
 
 ;; Airplane Mode
-(defpoll airplane_icon :interval "3s" "/path/to/scripts/Airplane --icon")
-(defpoll airplane_status :interval "3s" "/path/to/scripts/Airplane --status")
+(defpoll airplane_icon :interval "3s" "../eww/profilecard/scripts/Airplane --icon")
+(defpoll airplane_status :interval "3s" "../eww/profilecard/scripts/Airplane --status")
 
 ;; Redshift
-(defpoll redshift_status :interval "3s" "/path/to/scripts/Redshift state")
+(defpoll redshift_status :interval "3s" "../eww/profilecard/scripts/Redshift state")
 
 ;; Terminal selector
-(defpoll terminal_status :interval "2s" "cat /path/to/.term")
+(defpoll terminal_status :interval "2s" "cat ../src/.term")
 
 ;; GameMode
-(defpoll game_state :interval "2s" "/path/to/scripts/GameMode --status")
+(defpoll game_state :interval "2s" "../eww/profilecard/scripts/GameMode --status")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Widgets ;;
+;; Widegets ;;
 
 (defwidget launchermenu []
      (box :class "launchermenu"
@@ -61,7 +61,7 @@
           :spacing 7
           (closebtn)
           (pfp)
-          (infokali)
+          (infoarch)
           (weather)
           (system)
           (tools)
@@ -75,6 +75,7 @@
     )  
   )
 )
+
 
 (defwidget pfp []
 	(box :orientation "h"
@@ -114,65 +115,65 @@
 		)
 	)
 )	  
-
-(defwidget infokali []
-  (box :orientation "h"
-       :space-evenly "false"
-       :spacing 7
-       (box :orientation "v"
-            :class "apt"
-            :hexpand true
-            (label :halign "start"
-                   :class "apt-icon"
-                   :text "󰮯")
-            (box :space-evenly "false"
-                 (eventbox :cursor "pointer"
-                           (button :class "apt-updates"
-                                   :halign "start"
-                                   :tooltip "Click to update"
-                                   :onclick "sudo apt update && sudo apt upgrade -y" "${updates} Updates"))))
-       (box :orientation "h"
-            :space-evenly "false"
-            :class "fetch"
-            :spacing 8
-            (label :class "kali-icon"
-                   :halign "start"
-                   :text "󰣇")
-            (box 
-                 :space-evenly "false"
-                 (box :orientation "v"
-                      :spacing 3
-                      :halign "end"
-                      :style "margin-left: 10px;"
-                      (label :class "os-icon" 
-                             :halign "start"
-                             :text "󰣇")
-                      (label :class "pkgs-icon"
-                             :halign "start"
-                             :text "󰮯")
-                      (label :class "wm-icon"
-                             :halign "start"
-                             :text "󱪳")))
-            (box 
-                 :space-evenly "false"
-                 (box :orientation "v"
-                      :spacing 3
-                      :halign "start"
-                      (label :class "os-text"
-                             :halign "start"
-                             :text os)
-                      (label :class "pkgs-text"
-                             :halign "start"
-                             :text packages)
-                      (label :class "wm-text"
-                             :halign "start"
-                             :text wm))))))
-
+                 
+(defwidget infoarch []
+          (box :orientation "h"
+	           :space-evenly "false"
+	           :spacing 7
+	           (box :orientation "v"
+					:class "pacman"
+					:hexpand true
+					(label :halign "start"
+						   :class "pacman-icon"
+						   :text "󰮯")
+					(box :space-evenly "false"
+						 (eventbox :cursor "pointer"
+						 (button :class "pacman-updates"
+								 :halign "start"
+								 :tooltip "Click to update"
+								 :onclick "OpenApps --update &" "${updates} Updates"))))
+			   (box :orientation "h"
+					:space-evenly "false"
+					:class "fetch"
+					:spacing 8
+					(label :class "arch-icon"
+						   :halign "start"
+						   :text "󰣇")
+					(box 
+						 :space-evenly "false"
+						 (box :orientation "v"
+							  :spacing 3
+							  :halign "end"
+							  :style "margin-left: 10px;"
+							  (label :class "os-icon" 
+									 :halign "start"
+									 :text "󰣇")
+							  (label :class "pkgs-icon"
+									 :halign "start"
+									 :text "󰮯")
+							  (label :class "wm-icon"
+									 :halign "start"
+									 :text "󱪳")))
+					(box 
+						 :space-evenly "false"
+						 (box :orientation "v"
+							  :spacing 3
+							  :halign "start"
+							  (label :class "os-text"
+									 :halign "start"
+									 :text os)
+							  (label :class "pkgs-text"
+									 :halign "start"
+									 :text packages)
+							  (label :class "wm-text"
+									 :halign "start"
+									 :text wm))))))
+									 
 (defwidget weather[] 
   (box :orientation "h" :class "weatherboxfull" :space-evenly false
 	(box :orientation "v" :class "weatherbox" :hexpand true :space-evenly false
       (box :orientation "h" :class "weathertop" :space-evenly false
-        (box :class "weatherdesc" :style "color: ${weatherhex};" :halign "start" :hexpand true weatherdesc)
+        (box :class "weatherdesc" :style "color: ${weatherhex ?: '#adadff'};" :halign "start" :hexpand true weatherdesc)
         (box :class "weathertemp" :halign "end" "${weathertemp}°C")
       )
       (box :orientation "v" :class "weatherbot" :space-evenly false
@@ -180,7 +181,7 @@
 			 (label :limit-width 22 :text weathercity))
       )
     )
-      (box :class "weathericon" :style "color: ${weatherhex};" :halign "center" weathericon)
+      (box :class "weathericon" :style "color: ${weatherhex ?: '#adadff'};" :halign "center" weathericon)
   )
 )
 
@@ -229,6 +230,7 @@
   )
 )
 
+
 (defwidget system []
   (box 
     :class "system"
@@ -239,29 +241,63 @@
   )
 )
 
+
 (defwidget tools []
   (box :orientation "v" :space-evenly "true" 
     (box  :orientation "h" :space-evenly "true" :spacing 1
 
-      (box  :class "sys-tools" :orientation "v" :spacing 10
-        (button :onclick "bspc desktop -f next" :tooltip "Switch Desktop" :class "sys-tools" "")
-        (button :onclick "xfce4-terminal --drop-down" :tooltip "Dropdown Terminal" :class "sys-tools" "")
-        (button :onclick "pcmanfm" :tooltip "Files" :class "sys-tools" "")
-        (button :onclick "bsp-layout set next" :tooltip "Switch Layout" :class "sys-tools" "")
-        (button :onclick "xfce4-screenshooter" :tooltip "Screenshot" :class "sys-tools" "")
-        (button :onclick "firefox" :tooltip "Firefox" :class "sys-tools" "")
-        (button :onclick "mpv --no-video ~/.config/dunst/ding.ogg && systemctl suspend" :tooltip "Sleep" :class "sys-tools" "")
-      )
-    )
+      (box  :class "tools-main" :orientation "v" :space-evenly "false" :spacing 2
+        (eventbox :class "tools-box" :width 43 :height 43 :halign "center" :cursor "pointer" :tooltip "Wired/WiFi network connection"
+          (button :class {net_status != "Offline" ? "wifi-btn" : "wifi-no-btn"}
+                  :onclick "OpenApps --netmanager &" net_icon))
+        (label :class "info-btn" :limit-width 12 :xalign 0.5 :text net_status))
+
+      (box  :class "tools-main" :orientation "v" :space-evenly "false" :spacing 2
+        (eventbox :class "tools-box" :width 43 :height 43 :halign "center" :cursor "pointer" :tooltip "Bluetooth"
+          (button :class {blue_name == "On" ? "bluetooth-btn" : 
+                          blue_name == "Null" ? "bluetooth-no-btn" :
+                          blue_name == "Off" ? "bluetooth-no-btn" : "bluetooth-btn"}
+                  :onclick "../eww/profilecard/scripts/Bluetooth --toggle &" blue_icon))
+        (label :class "info-btn" :limit-width 12 :xalign 0.5 :text blue_name))
+
+      (box  :class "tools-main" :orientation "v" :space-evenly "false" :spacing 2
+        (eventbox :class "tools-box" :width 43 :height 43 :halign "center" :cursor "pointer" :tooltip "Airplane Mode"
+          (button :class {airplane_status == "On" ? "airplane-btn" : "airplane-no-btn"} :onclick "../eww/profilecard/scripts/Airplane --toggle &" airplane_icon))
+        (label :class "info-btn" :limit-width 12 :xalign 0.5 :text airplane_status)))
+
+
+    (box  :orientation "h" :space-evenly "true" :spacing 1
+      (box  :class "tools-main" :orientation "v" :space-evenly "false" :spacing 2
+        (eventbox :class "tools-box" :width 43 :height 43 :halign "center" :cursor "pointer" :tooltip "Night Light"
+          (button :class {redshift_status == "on" ? "redshift-btn" : "redshift-no-btn"} :onclick "../eww/profilecard/scripts/Redshift toggle &" {redshift_status == "on" ? "󰹐" : "󱠃"}))
+        (label :class "info-btn" :limit-width 12 :xalign 0.5 :text "Night Light"))
+
+      (box  :class "tools-main" :orientation "v" :space-evenly "false" :spacing 2
+        (eventbox :class "tools-box" :width 43 :height 43 :halign "center" :cursor "pointer" :tooltip "Change your default terminal
+for all the environment.
+Alacritty / Kitty"
+          (button :class "term-btn" :onclick {terminal_status == "alacritty" ? "echo kitty > ~/.config/bspwm/src/.term" : "echo alacritty > ~/.config/bspwm/src/.term"} "󰆍"))
+        (label :class "info-btn" :limit-width 12 :xalign 0.5 :text terminal_status))
+
+      (box  :class "tools-main" :orientation "v" :space-evenly "false" :spacing 2
+        (eventbox :class "tools-box" :width 43 :height 43 :halign "center" :cursor "pointer"
+          (button :class {game_state == "Off" ? "game-no-btn" : "game-btn"} :onclick "../eww/profilecard/scripts/GameMode --toggle &" "󰺵"))
+        (label :class "info-btn" :limit-width 12 :xalign 0.5 :text "Game Mode")))
   )
 )
 
 (defwidget footer []
-  (box :orientation "v" :space-evenly "true" :spacing 2
-    (box :orientation "h" :space-evenly "false"
-      (box :orientation "h" :spacing 2 :hexpand true
-        (button :class "info-icon" :onclick "eww close info" "")
-      )
-    )
+  (box :orientation "h" :space-evenly "false" :spacing 5
+
+    (box :orientation "h"
+      (label :class "temp" :text "")
+      (label :class "info-btn" :text temp))
   )
 )
+
+;; Windows ;;
+
+(defwindow launchermenu
+    :geometry (geometry :x "80px" :y "0px" :anchor "left center")
+    :wm-ignore false
+    (launchermenu))
