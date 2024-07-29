@@ -47,7 +47,7 @@ else
 	sleep 1
 	echo -e "\n\n${blueColour}[*] Installing necessary packages for the environment...\n${endColour}"
 	sleep 2
-	sudo apt install -y kitty rofi feh xclip ranger i3lock-fancy scrot scrub wmname imagemagick cmatrix htop neofetch python3-pip procps tty-clock fzf lsd bat pamixer flameshot
+	sudo apt install -y kitty rofi feh xclip ranger i3lock-fancy scrot scrub wmname imagemagick cmatrix htop neofetch python3-pip procps tty-clock fzf lsd bat pamixer flameshot playerctl
 	if [ $? != 0 ] && [ $? != 130 ]; then
 		echo -e "\n${redColour}[-] Failed to install some packages!\n${endColour}"
 		exit 1
@@ -69,7 +69,16 @@ else
 		echo -e "\n${greenColour}[+] Done\n${endColour}"
 		sleep 1.5
 	fi
-
+echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${endColour}"
+	sleep 2
+	sudo pip3 install pywal
+	if [ $? != 0 ] && [ $? != 130 ]; then
+		echo -e "\n${redColour}[-] Failed to install some dependencies for pywal!\n${endColour}"
+		exit 1
+	else
+		echo -e "\n${greenColour}[+] Done\n${endColour}"
+		sleep 1.5
+	fi
 	echo -e "\n${purpleColour}[*] Installing necessary dependencies for polybar...\n${endColour}"
 	sleep 2
 	sudo apt install -y cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev
@@ -91,10 +100,51 @@ else
 		echo -e "\n${greenColour}[+] Done\n${endColour}"
 		sleep 1.5
 	fi
+	
+		echo -e "\n${purpleColour}[*] Installing necessary dependencies for EWW...\n${endColour}"
+	sleep 2
+	sudo apt-get install libgtk-3-dev libpango1.0-dev libglib2.0-dev libcairo2-dev meson ninja-build libdbusmenu-glib-dev libdbusmenu-gtk3-dev libgtk-layer-shell-dev pkg-config cargo rustc 
+	
+	if [ $? != 0 ] && [ $? != 130 ]; then
+		echo -e "\n${redColour}[-] Failed to install some dependencies for EWW!\n${endColour}"
+		exit 1
+	else
+		echo -e "\n${greenColour}[+] Done\n${endColour}"
+		sleep 1.5
+	fi
+	
 
 	echo -e "\n${blueColour}[*] Starting installation of the tools...\n${endColour}"
 	sleep 0.5
 	mkdir ~/tools && cd ~/tools
+	
+			echo -e "\n${purpleColour}[*] Installing zscroll...\n${endColour}"
+	sleep 2
+	git clone https://github.com/noctuid/zscroll 
+	cd zscroll
+	sudo python3 setup.py install
+	if [ $? != 0 ] && [ $? != 130 ]; then
+		echo -e "\n${redColour}[-] Failed to install zscroll!\n${endColour}"
+		exit 1
+	else
+		sleep 1.5
+	fi
+	cd ..
+	
+		echo -e "\n${purpleColour}[*] Installing EWW...\n${endColour}"
+	sleep 2
+	git clone https://github.com/elkowar/eww.git
+	cd eww
+	cargo build --release
+	sudo mv target/release/eww /usr/local/bin/
+	eww --version
+	if [ $? != 0 ] && [ $? != 130 ]; then
+		echo -e "\n${redColour}[-] Failed to install EWW!\n${endColour}"
+		exit 1
+	else
+		sleep 1.5
+	fi
+	cd ..
 
 	echo -e "\n${purpleColour}[*] Installing bspwm...\n${endColour}"
 	sleep 2
@@ -243,13 +293,20 @@ else
 	sleep 2
 	chmod -R +x ~/.config/bspwm/
 	chmod +x ~/.config/polybar/launch.sh
-	chmod +x ~/.config/polybar/shapes/scripts/*
+	chmod +x ~/.config/polybar/scripts/* 
+	chmod +x ~/.config/polybar/pywal.sh
 	sudo chmod +x /usr/local/bin/whichSystem.py
 	sudo chmod +x /usr/local/share/zsh/site-functions/_bspc
 	sudo chown root:root /usr/local/share/zsh/site-functions/_bspc
 	sudo mkdir -p /root/.config/polybar/shapes/scripts/
 	sudo touch /root/.config/polybar/shapes/scripts/target
-	sudo ln -sfv ~/.config/polybar/shapes/scripts/target /root/.config/polybar/shapes/scripts/target
+	sudo ln -sfv ~/.config/polybar/scripts/target /root/.config/polybar/scripts/target
+	chmod +x ~/.config/bin/* 
+	chmod +x ~/.config/rofi/launcher.sh  ~/.config/rofi/powermenu.sh  
+	chmod +x ~/.config/asciiart/* 
+	cp -R ~/.config/asciiart ~/.local/share/
+	chmod +x ~/.config/colorscript
+	cp -R ~/.config/colorscript ~/.local/
 	cd ..
 	echo -e "\n${greenColour}[+] Done\n${endColour}"
 	sleep 1.5
