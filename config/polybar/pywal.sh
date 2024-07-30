@@ -55,9 +55,24 @@ change_color() {
 	\$yellow: ${SH6};
 	\$archicon: ${SH2};
 	EOF
+
+# p10k (Powerlevel10k)
+cat > ~/.p10k.zsh <<- EOF
+# Colors
+	typeset -g POWERLEVEL9K_BACKGROUND=$BG
+	typeset -g POWERLEVEL9K_FOREGROUND=$FG
+	typeset -g POWERLEVEL9K_PREDOMINANT_COLOR=$SH1
+	typeset -g POWERLEVEL9K_SECONDARY_COLOR=$SH2
+	typeset -g POWERLEVEL9K_TERTIARY_COLOR=$SH3
+	typeset -g POWERLEVEL9K_QUATERNARY_COLOR=$SH4
+	typeset -g POWERLEVEL9K_ACCENT_COLOR=$SH5
+	EOF
+
 	
 	polybar-msg cmd restart
 }
+
+
 
 # Main
 if [[ -x "`which wal`" ]]; then

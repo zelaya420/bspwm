@@ -11,8 +11,10 @@
 (defpoll uptime :interval "30s" "uptime -p | sed -E -e 's/hour(s)?/hrs/g' -e 's/minute(s)?/min/g'")
 
 ;; Pacman
-(defpoll updates :interval "5m" "Updates --get-updates")
-(defpoll packages :interval "1h" "pacman -Q | wc -l")
+
+(defpoll updates :interval "5m" "apt list --upgradable 2>/dev/null | grep -c upgradable")
+(defpoll packages :interval "1h" "dpkg -l | grep '^ii' | wc -l")
+
 
 ;; Weather
 (defpoll weathericon :interval "15m" "Weather icon")
@@ -138,7 +140,7 @@
 					:spacing 8
 					(label :class "arch-icon"
 						   :halign "start"
-						   :text "󰣇")
+						   :text "  ")
 					(box 
 						 :space-evenly "false"
 						 (box :orientation "v"
@@ -147,7 +149,7 @@
 							  :style "margin-left: 10px;"
 							  (label :class "os-icon" 
 									 :halign "start"
-									 :text "󰣇")
+									 :text "  ")
 							  (label :class "pkgs-icon"
 									 :halign "start"
 									 :text "󰮯")
