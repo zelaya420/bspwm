@@ -306,7 +306,8 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 	chmod +x ~/.config/asciiart/* 
 	cp -R ~/.config/asciiart ~/.local/share/
 	chmod +x ~/.config/colorscript
-	cp -R ~/.config/colorscript ~/.local/
+	cp -R ~/.config/colorscript /usr/bin
+	chmod +x ~/.config/eww/profilecard/scripts/*
 	cd ..
 	echo -e "\n${greenColour}[+] Done\n${endColour}"
 	sleep 1.5
