@@ -12,7 +12,7 @@ rofi_cmd() {
 	rofi -dmenu \
 		-p "Goodbye ${USER}" \
 		-mesg "Uptime: $(uptime -p | sed -e 's/up //g')" \
-		-theme "$HOME"/.config/rofi/rofi-themes/PowerMenu.rasi
+		-theme "$HOME"/.config/rofi/PowerMenu.rasi
 }
 
 chosen=$(printf "%s\n" "${options[@]}" | rofi_cmd)

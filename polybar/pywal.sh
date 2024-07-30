@@ -3,6 +3,7 @@
 # Color files
 PFILE="$HOME/.config/polybar/colors.ini"
 RFILE="$HOME/.config/rofi/colors.rasi"
+SFILE="$HOME/.config/eww/colors.scss"
 WFILE="$HOME/.cache/wal/colors.sh"
 
 # Get colors
@@ -39,6 +40,22 @@ change_color() {
 	}
 	EOF
 	
+	# eww (colors.scss)
+	cat > $SFILE <<- EOF
+	\$bg: ${BG};
+	\$bg-alt: ${SH1};
+	\$fg: ${FG};
+	\$black: ${SH1};
+	\$lightblack: ${SH8};
+	\$red: ${SH1};
+	\$blue: ${SH2};
+	\$cyan: ${SH3};
+	\$magenta: ${SH4};
+	\$green: ${SH5};
+	\$yellow: ${SH6};
+	\$archicon: ${SH2};
+	EOF
+	
 	polybar-msg cmd restart
 }
 
@@ -55,18 +72,19 @@ if [[ -x "`which wal`" ]]; then
 			exit 1
 		fi
 
-		BG=`printf "%s\n" "$background"`
-		FG=`printf "%s\n" "$foreground"`
-		FGA=`printf "%s\n" "$foreground"`
-		SH1=`printf "%s\n" "$color1"`
-		SH2=`printf "%s\n" "$color2"`
-		SH3=`printf "%s\n" "$color1"`
-		SH4=`printf "%s\n" "$color2"`
-		SH5=`printf "%s\n" "$color1"`
-		SH6=`printf "%s\n" "$color2"`
-		SH7=`printf "%s\n" "$color1"`
-		SH8=`printf "%s\n" "$color7"`
-
+		# Ensure colors are not empty
+		BG=${background:-"#000000"}
+		FG=${foreground:-"#FFFFFF"}
+		FGA=${color8:-$FG}
+		SH1=${color1:-$BG}
+		SH2=${color2:-$BG}
+		SH3=${color3:-$BG}
+		SH4=${color4:-$BG}
+		SH5=${color5:-$BG}
+		SH6=${color6:-$BG}
+		SH7=${color7:-$BG}
+		SH8=${color8:-$BG}
+		
 		change_color
 	else
 		echo -e "[!] Please enter the path to wallpaper. \n"
