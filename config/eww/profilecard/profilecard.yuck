@@ -274,12 +274,11 @@
           (button :class {redshift_status == "on" ? "redshift-btn" : "redshift-no-btn"} :onclick "../eww/profilecard/scripts/Redshift toggle &" {redshift_status == "on" ? "󰹐" : "󱠃"}))
         (label :class "info-btn" :limit-width 12 :xalign 0.5 :text "Night Light"))
 
-      (box  :class "tools-main" :orientation "v" :space-evenly "false" :spacing 2
-        (eventbox :class "tools-box" :width 43 :height 43 :halign "center" :cursor "pointer" :tooltip "Change your default terminal
-for all the environment.
-Alacritty / Kitty"
-          (button :class "term-btn" :onclick {terminal_status == "alacritty" ? "echo kitty > ~/.config/bspwm/src/.term" : "echo alacritty > ~/.config/bspwm/src/.term"} "󰆍"))
-        (label :class "info-btn" :limit-width 12 :xalign 0.5 :text terminal_status))
+    (box :class "tools-main" :orientation "v" :space-evenly "false" :spacing 2
+      (eventbox :class "tools-box" :width 43 :height 43 :halign "center" :cursor "pointer" :tooltip "Open Kitty terminal"
+        (button :class "term-btn" :onclick "kitty --working-directory=$HOME" "󰆍"))
+       (label :class "info-btn" :limit-width 12 :xalign 0.5 :text "Kitty"))
+
 
       (box  :class "tools-main" :orientation "v" :space-evenly "false" :spacing 2
         (eventbox :class "tools-box" :width 43 :height 43 :halign "center" :cursor "pointer"

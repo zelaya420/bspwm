@@ -1,22 +1,70 @@
 #
 # wm independent hotkeys
 #
+#|||----- Applications -----|||#
+
+# Show help
+F1
+	eww -c $HOME/.config/eww open --toggle csheet
 
 # terminal emulator
 super + Return
 	/usr/bin/kitty
 
+# Open floating Terminal
+super + alt + Return
+	/usr/bin/kitty --floating
+	
+####
+
+# Open Firefox
+shift + alt + b 
+	firefox
+
+# Open Burpsuite
+super + shift + b
+	burpsuite
+
+# Screen Lock
+super + alt +l 
+	/usr/bin/i3lock-fancy	
+
+
+# Open spotify
+super + alt + z
+        spotify
+
+#|||----- System Keybindings -----|||#
+
+
 # program launcher
 super + d
 	~/.config/rofi/launcher.sh
 
-# make sxhkd reload its configuration files:
-super + Escape
-	pkill -USR1 -x sxhkd
+# PowerMenu
+super + alt + p
+	~/.config/rofi/powermenu.sh
+	
+# Increase volume
+ctrl + shift + Up
+	pamixer --increase 5
 
-#
-# bspwm hotkeys
-#
+# Decrease the volume
+ctrl + shift + Down 
+	pamixer --decrease 5
+
+# Mute/Restore volume
+ctrl + shift + m
+	pamixer --toggle-mute
+
+# ScreenShots
+ctrl + alt + shift + s
+	flameshot full
+
+ctrl +  alt + shift + a
+	flameshot gui
+	
+#|||----- Bspwm hotkeys -----|||#
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -37,6 +85,55 @@ super + y
 # swap the current node and the biggest window
 super + g
 	bspc node -s biggest.window
+
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# rotate desktop
+super + r
+	bspc node @/ --rotate {90,-90}
 
 #
 # state/flags
@@ -124,33 +221,14 @@ super + ctrl + {Left,Down,Up,Right}
 alt + super + {Left,Down,Up,Right}
 	~/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
-# Open Firefox
-super + shift + f
-	/usr/bin/firejail /usr/bin/firefox
+# rotate desktop
+super + r
+	bspc node @/ --rotate {90,-90}
 
-# Open Burpsuite
-super + shift + b
-	/usr/bin/burpsuite
+# Power off, Reboot, Log out, Lockscreen, kill an app
+ctrl + super + alt + {p,r,q,l,k}
+	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill
 
-# Screen Lock
-ctrl + alt + l
-	/usr/bin/i3lock-fancy	
 
-# Increase volume
-ctrl + shift + Up
-	pamixer --increase 5
-
-# Decrease the volume
-ctrl + shift + Down 
-	pamixer --decrease 5
-
-# Mute/Restore volume
-ctrl + shift + m
-	pamixer --toggle-mute
-
-# ScreenShots
-@Print
-	flameshot full
-
-ctrl + @Print
-	flameshot gui
+	
+	
