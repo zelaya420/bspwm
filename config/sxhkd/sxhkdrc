@@ -1,234 +1,172 @@
-#
 # wm independent hotkeys
-#
-#|||----- Applications -----|||#
 
-# Show help
+#|||----- Aplicaciones -----|||#
+
+# Mostrar ayuda
 F1
 	eww -c $HOME/.config/eww open --toggle csheet
 
-# terminal emulator
+# Emulador de terminal
 super + Return
 	/usr/bin/kitty
 
-# Open floating Terminal
+# Abrir Terminal flotante
 super + alt + Return
-	/usr/bin/kitty --floating
-	
-####
+	/usr/bin/kitty --class floating
 
-# Open Firefox
+# Abrir Firefox
 shift + alt + b 
 	firefox
 
-# Open Burpsuite
+# Abrir Burpsuite
 super + shift + b
 	burpsuite
 
-# Screen Lock
-super + alt +l 
-	/usr/bin/i3lock-fancy	
+# Bloquear pantalla
+super + alt + l 
+	betterlockscreen -u ~/Wallpapers/435112.jpg -l
 
-
-# Open spotify
+# Abrir Spotify
 super + alt + z
         spotify
 
-#|||----- System Keybindings -----|||#
+#|||----- Atajos del Sistema -----|||#
 
-
-# program launcher
+# Lanzador de programas
 super + d
 	~/.config/rofi/launcher.sh
 
-# PowerMenu
+# Menú de energía
 super + alt + p
 	~/.config/rofi/powermenu.sh
 	
-# Increase volume
+# Aumentar volumen
 ctrl + shift + Up
 	pamixer --increase 5
 
-# Decrease the volume
+# Disminuir volumen
 ctrl + shift + Down 
 	pamixer --decrease 5
 
-# Mute/Restore volume
+# Silenciar/Restaurar volumen
 ctrl + shift + m
 	pamixer --toggle-mute
 
-# ScreenShots
+# Capturas de pantalla
 ctrl + alt + shift + s
 	flameshot full
 
-ctrl +  alt + shift + a
+ctrl + alt + shift + a
 	flameshot gui
-	
-#|||----- Bspwm hotkeys -----|||#
 
-# quit/restart bspwm
+#|||----- Control de Brillo -----|||#
+
+# Aumentar brillo
+super + ctrl + Up
+	xbacklight -inc 10
+
+# Disminuir brillo
+super + ctrl + Down
+	xbacklight -dec 10
+
+#|||----- Atajos de Bspwm -----|||#
+
+# Salir/reiniciar bspwm
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-# close and kill
+# Cerrar y matar
 super + {_,shift + }w
 	bspc node -{c,k}
 
-# alternate between the tiled and monocle layout
+# Alternar entre el diseño en mosaico y monocular
 super + m
 	bspc desktop -l next
 
-# send the newest marked node to the newest preselected node
+# Enviar el nodo marcado más nuevo al nodo preseleccionado más nuevo
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest window
+# Intercambiar el nodo actual con la ventana más grande
 super + g
 	bspc node -s biggest.window
 
-# state/flags
-#
+#|||----- Estados/Flags de Ventanas -----|||#
 
-# set the window state
+# Establecer el estado de la ventana
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# set the node flags
+# Establecer las flags del nodo
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-#
-# focus/swap
-#
+#|||----- Enfoque/Intercambio -----|||#
 
-# focus the node in the given direction
+# Enfocar el nodo en la dirección dada
 super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
-# focus the node for the given path jump
+# Enfocar el nodo para el salto de ruta dado
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous window in the current desktop
+# Enfocar la ventana siguiente/anterior en el escritorio actual
 super + {_,shift + }c
 	bspc node -f {next,prev}.local.!hidden.window
 
-# focus the next/previous desktop in the current monitor
+# Enfocar el siguiente/anterior escritorio en el monitor actual
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# focus the last node/desktop
+# Enfocar el último nodo/escritorio
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
+# Enfocar el nodo más antiguo o más nuevo en el historial de enfoque
 super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
+# Enfocar o enviar al escritorio dado
+super + {_,shift + }{1-5,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-# rotate desktop
+# Rotar escritorio
 super + r
-	bspc node @/ --rotate {90,-90}
+	bspc node @/ --rotate {90,-90,180,-180,270,-270}
 
-#
-# state/flags
-#
+#|||----- Preselección -----|||#
 
-# set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-
-# set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
-
-#
-# focus/swap
-#
-
-# focus the node in the given direction
-super + {_,shift + }{Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
-
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
-
-# focus the next/previous window in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local.!hidden.window
-
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
-
-# focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-#
-# preselect
-#
-
-# preselect the direction
+# Preseleccionar la dirección
 super + ctrl + alt + {Left,Down,Up,Right}
 	bspc node -p {west,south,north,east}
 
-# preselect the ratio
+# Preseleccionar la proporción
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
-# cancel the preselection for the focused node
+# Cancelar la preselección para el nodo enfocado
 super + ctrl + alt + space
 	bspc node -p cancel
 
-# cancel the preselection for the focused desktop
+# Cancelar la preselección para el escritorio enfocado
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-#
-# move/resize
-#
+#|||----- Mover/Redimensionar -----|||#
 
-# expand a window by moving one of its side outward
-#super + alt + {h,j,k,l}
-#	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract a window by moving one of its side inward
-#super + alt + shift + {h,j,k,l}
-#	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# move a floating window
+# Mover una ventana flotante
 super + ctrl + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# CUSTOM
+# Redimensionar personalizado
 alt + super + {Left,Down,Up,Right}
 	~/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
-# rotate desktop
-super + r
-	bspc node @/ --rotate {90,-90}
+#|||----- Comandos del Sistema -----|||#
 
-# Power off, Reboot, Log out, Lockscreen, kill an app
+# Apagar, Reiniciar, Cerrar sesión, Bloquear pantalla, Matar una aplicación
 ctrl + super + alt + {p,r,q,l,k}
-	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill
-
-
-	
-	
+	{systemctl poweroff,systemctl reboot,bspc quit,physlock -d,xkill}

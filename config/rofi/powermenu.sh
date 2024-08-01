@@ -25,7 +25,7 @@ case $chosen in
         systemctl reboot
         ;;
     "")
-        physlock -d
+	betterlockscreen -u ~/Wallpapers/435112.jpg -l
         ;;
     "")
         mpc -q pause

@@ -29,4 +29,4 @@ while True:
     os.system(comando_pywal)
 
     # Pausar durante 4 minutos
-    time.sleep(240)
+    time.sleep(24)
