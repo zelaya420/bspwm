@@ -249,6 +249,19 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 	echo -e "\n${blueColour}[*] Starting configuration of fonts, wallpaper, configuration files, .zshrc, .p10k.zsh, and scripts...\n${endColour}"
 	sleep 0.5
 
+	echo -e "\n${purpleColour}[*] Configuring wallpaper...\n${endColour}"
+	sleep 2
+	if [[ -d "~/Wallpapers" ]]; then
+		cp -rv $dir/wallpapers/* ~/Wallpapers
+	else
+		mkdir ~/Wallpapers
+		cp -rv $dir/wallpapers/* ~/Wallpapers
+	fi
+	wal -nqi ~/Wallpapers/archkali.png
+	sudo wal -nqi ~/Wallpapers/archkali.png
+	echo -e "\n${greenColour}[+] Done\n${endColour}"
+	sleep 1.5
+
 	echo -e "\n${purpleColour}[*] Configuring fonts...\n${endColour}"
 	sleep 2
 	if [[ -d "$fdir" ]]; then
