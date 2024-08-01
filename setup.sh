@@ -1,6 +1,18 @@
 #!/usr/bin/bash
+# Definir el directorio de respaldo
+backup_folder="$HOME/backups"
 
-# Author: Juan Rivas (aka @r1vs3c)
+# Crear el directorio de respaldo si no existe
+mkdir -p "$backup_folder"
+
+# Definir la fecha actual en formato AAAA-MM-DD
+date=$(date +'%Y-%m-%d')
+
+# Imprimir las variables para verificar que están definidas correctamente
+echo "Directorio de respaldo: $backup_folder"
+echo "Fecha actual: $date"
+
+# Author: Zelaya420
 
 # Colours
 greenColour="\e[0;32m\033[1m"
