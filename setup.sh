@@ -274,7 +274,6 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
     cp -r ~/.config/neofetch $backup_folder/$date/
     echo -e "\n${greenColour}[+] Done\n${endColour}"
 
-
 	sleep 1.5
 
 	echo -e "\n${purpleColour}[*] Configuring scripts...\n${endColour}"
@@ -282,7 +281,21 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 	sudo cp -v $dir/scripts/whichSystem.py /usr/local/bin/
 	cp -rv $dir/scripts/*.sh ~/.config/polybar/shapes/scripts/
 	touch ~/.config/polybar/shapes/scripts/target
+	cp -rv $dir/config/bspwm ~/.config/
+	cp -rv $dir/config/asciiart ~/.config/
+	cp -rv $dir/config/assets ~/.config/
+	cp -rv $dir/config/bin ~/.config/	
+	cp -rv $dir/config/eww ~/.config/
+	cp -rv $dir/config/kitty ~/.config/
+	cp -rv $dir/config/neofetch ~/.config/
+	cp -rv $dir/config/picom ~/.config/
+	cp -rv $dir/config/polybar ~/.config/
+	cp -rv $dir/config/rofi ~/.config/
+	cp -rv $dir/config/sxhkd ~/.config/
+	cp -rv $dir/config/colorscript ~/.config/
+	
 	echo -e "\n${greenColour}[+] Done\n${endColour}"
+	
 	sleep 1.5
 
 	echo -e "\n${purpleColour}[*] Configuring necessary permissions and symbolic links...\n${endColour}"
@@ -302,7 +315,7 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 	chmod +x ~/.config/asciiart/* 
 	cp -R ~/.config/asciiart ~/.local/share/
 	chmod +x ~/.config/colorscript
-	cp -R ~/.config/colorscript /usr/bin
+	sudo cp -R ~/.config/colorscript /usr/bin
 	chmod +x ~/.config/eww/profilecard/scripts/*
 	cd ..
 	echo -e "\n${greenColour}[+] Done\n${endColour}"
