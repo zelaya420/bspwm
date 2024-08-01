@@ -261,92 +261,18 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 
  ########## ---------- Backup files ---------- ##########
 
-logo "Backup files"
+ echo -e "\n${blueColour}[*] Backing up current configurations...\n${endColour}"
+    sleep 2
+    mkdir -p $backup_folder/$date
+    cp -r ~/.config/bspwm/* $backup_folder/$date/
+    cp -r ~/.config/sxhkd/* $backup_folder/$date/
+    cp -r ~/.config/polybar/* $backup_folder/$date/
+    cp -r ~/.config/eww/* $backup_folder/$date/
+    cp -r ~/.config/kitty/* $backup_folder/$date/
+    cp -r ~/.config/bin $backup_folder/$date/
+    cp ~/.config/rofi/* $backup_folder/$date/
 
-printf "If you already have a powerful and super Pro NEOVIM configuration, write 'n' in the next question. If you answer 'y' your neovim configuration will be moved to the backup directory.\n\n"
 
-while true; do
-    read -rp "Do you want to try my nvim config? (y/n): " try_nvim
-    if [[ "$try_nvim" == "y" || "$try_nvim" == "n" ]]; then
-        break
-    else
-        echo "Invalid input. Please enter 'y' or 'n'."
-    fi
-done
-
-printf "\nBackup files will be stored in %s%s%s/.RiceBackup%s \n\n" "${BLD}" "${CRE}" "$HOME" "${CNC}"
-sleep 10
-
-[ ! -d "$backup_folder" ] && mkdir -p "$backup_folder"
-
-for folder in bspwm bin picom rofi eww sxhkd dunst kitty polybar ranger tmux zsh  ; do
-    if [ -d "$HOME/.config/$folder" ]; then
-        if mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date" 2>> RiceError.log; then
-            printf "%s%s%s folder backed up successfully at %s%s/%s_%s%s\n" "${BLD}" "${CGR}" "$folder" "${CBL}" "$backup_folder" "$folder" "$date" "${CNC}"
-            sleep 1
-        else
-            printf "%s%sFailed to backup %s folder. See %sRiceError.log%s\n" "${BLD}" "${CRE}" "$folder" "${CBL}" "${CNC}"
-            sleep 1
-        fi
-    else
-        printf "%s%s%s folder does not exist, %sno backup needed%s\n" "${BLD}" "${CGR}" "$folder" "${CYE}" "${CNC}"
-        sleep 1
-    fi
-done
-
-if [[ $try_nvim == "y" ]]; then
-        # Backup nvim
-    if [ -d "$HOME/.config/nvim" ]; then
-        if mv "$HOME/.config/nvim" "$backup_folder/nvim_$date" 2>> RiceError.log; then
-                printf "%s%snvim folder backed up successfully at %s%s/nvim_%s%s\n" "${BLD}" "${CGR}" "${CBL}" "$backup_folder" "$date" "${CNC}"
-                sleep 1
-            else
-                printf "%s%sFailed to backup nvim folder. See %sRiceError.log%s\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
-                sleep 1
-        fi
-        else
-            printf "%s%snvim folder does not exist, %sno backup needed%s\n" "${BLD}" "${CGR}" "${CYE}" "${CNC}"
-            sleep 1
-    fi
-if [ -f ~/.zshrc ]; then
-    if mv ~/.zshrc "$backup_folder"/.zshrc_"$date" 2>> RiceError.log; then
-        printf "%s%s.zshrc file backed up successfully at %s%s/.zshrc_%s%s\n" "${BLD}" "${CGR}" "${CBL}" "$backup_folder" "${date}" "${CNC}"
-    else
-        printf "%s%sFailed to backup .zshrc file. See %sRiceError.log%s\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
-    fi
-else
-    printf "%s%sThe file .zshrc does not exist, %sno backup needed%s\n" "${BLD}" "${CGR}" "${CYE}" "${CNC}"
-fi
-
-printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
-sleep 5
-
-	echo -e "\n${purpleColour}[*] Configuring wallpaper...\n${endColour}"
-	sleep 2
-	if [[ -d "~/Wallpapers" ]]; then
-		cp -rv $dir/wallpapers/* ~/Wallpapers
-	else
-		mkdir ~/Wallpapers
-		cp -rv $dir/wallpapers/* ~/Wallpapers
-	fi
-	wal -nqi ~/Wallpapers/archkali.png
-	sudo wal -nqi ~/Wallpapers/archkali.png
-	echo -e "\n${greenColour}[+] Done\n${endColour}"
-	sleep 1.5
-
-	echo -e "\n${purpleColour}[*] Configuring configuration files...\n${endColour}"
-	sleep 2
-	cp -rv $dir/config/* ~/.config/
-	echo -e "\n${greenColour}[+] Done\n${endColour}"
-	sleep 1.5
-
-	echo -e "\n${purpleColour}[*] Configuring the .zshrc and .p10k.zsh files...\n${endColour}"
-	sleep 2
-	cp -v $dir/.zshrc ~/.zshrc
-	sudo ln -sfv ~/.zshrc /root/.zshrc
-	cp -v $dir/.p10k.zsh ~/.p10k.zsh
-	sudo ln -sfv ~/.p10k.zsh /root/.p10k.zsh
-	echo -e "\n${greenColour}[+] Done\n${endColour}"
 	sleep 1.5
 
 	echo -e "\n${purpleColour}[*] Configuring scripts...\n${endColour}"
