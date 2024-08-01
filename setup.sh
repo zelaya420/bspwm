@@ -273,7 +273,7 @@ sleep 10
 
 [ ! -d "$backup_folder" ] && mkdir -p "$backup_folder"
 
-for folder in bspwm alacritty picom rofi eww sxhkd dunst kitty polybar ncmpcpp ranger tmux zsh mpd paru; do
+for folder in bspwm bin picom rofi eww sxhkd dunst kitty polybar ranger tmux zsh  ; do
     if [ -d "$HOME/.config/$folder" ]; then
         if mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date" 2>> RiceError.log; then
             printf "%s%s%s folder backed up successfully at %s%s/%s_%s%s\n" "${BLD}" "${CGR}" "$folder" "${CBL}" "$backup_folder" "$folder" "$date" "${CNC}"
@@ -302,32 +302,6 @@ if [[ $try_nvim == "y" ]]; then
             printf "%s%snvim folder does not exist, %sno backup needed%s\n" "${BLD}" "${CGR}" "${CYE}" "${CNC}"
             sleep 1
     fi
-fi
-
-for folder in "$HOME"/.mozilla/firefox/*.default-release/chrome; do
-    if [ -d "$folder" ]; then
-        if mv "$folder" "$backup_folder"/chrome_"$date" 2>> RiceError.log; then
-            printf "%s%sChrome folder backed up successfully at %s%s/chrome_%s%s\n" "${BLD}" "${CGR}" "${CBL}" "$backup_folder" "${date}" "${CNC}"
-        else
-            printf "%s%sFailed to backup Chrome folder. See %sRiceError.log%s\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
-        fi
-    else
-        printf "%s%sThe folder Chrome does not exist, %sno backup needed%s\n" "${BLD}" "${CGR}" "${CYE}" "${CNC}"
-    fi
-done
-
-for file in "$HOME"/.mozilla/firefox/*.default-release/user.js; do
-    if [ -f "$file" ]; then
-        if mv "$file" "$backup_folder"/user.js_"$date" 2>> RiceError.log; then
-            printf "%s%suser.js file backed up successfully at %s%s/user.js_%s%s\n" "${BLD}" "${CGR}" "${CBL}" "$backup_folder" "${date}" "${CNC}"
-        else
-            printf "%s%sFailed to backup user.js file. See %sRiceError.log%s\n" "${BLD}" "${CRE}" "${CBL}" "${CNC}"
-        fi
-    else
-        printf "%s%sThe file user.js does not exist, %sno backup needed%s\n" "${BLD}" "${CGR}" "${CYE}" "${CNC}"
-    fi
-done
-
 if [ -f ~/.zshrc ]; then
     if mv ~/.zshrc "$backup_folder"/.zshrc_"$date" 2>> RiceError.log; then
         printf "%s%s.zshrc file backed up successfully at %s%s/.zshrc_%s%s\n" "${BLD}" "${CGR}" "${CBL}" "$backup_folder" "${date}" "${CNC}"
