@@ -1,12 +1,6 @@
 #!/usr/bin/bash
-# Definir el directorio de respaldo
-backup_folder="$HOME/backups"
-
-# Crear el directorio de respaldo si no existe
-mkdir -p "$backup_folder"
-
-# Definir la fecha actual en formato AAAA-MM-DD
-date=$(date +'%Y-%m-%d')
+backup_folder=~/.RiceBackup
+date=$(date +%Y%m%d-%H%M%S)
 
 # Imprimir las variables para verificar que están definidas correctamente
 echo "Directorio de respaldo: $backup_folder"
