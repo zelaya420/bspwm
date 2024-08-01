@@ -264,13 +264,14 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
  echo -e "\n${blueColour}[*] Backing up current configurations...\n${endColour}"
     sleep 2
     mkdir -p $backup_folder/$date
-    cp -r ~/.config/bspwm/* $backup_folder/$date/
-    cp -r ~/.config/sxhkd/* $backup_folder/$date/
-    cp -r ~/.config/polybar/* $backup_folder/$date/
-    cp -r ~/.config/eww/* $backup_folder/$date/
-    cp -r ~/.config/kitty/* $backup_folder/$date/
+    cp -r ~/.config/bspw/ $backup_folder/$date/
+    cp -r ~/.config/sxhkd $backup_folder/$date/
+    cp -r ~/.config/polybar $backup_folder/$date/
+    cp -r ~/.config/eww $backup_folder/$date/
+    cp -r ~/.config/kitty $backup_folder/$date/
     cp -r ~/.config/bin $backup_folder/$date/
-    cp ~/.config/rofi/* $backup_folder/$date/
+    cp -r ~/.config/rofi $backup_folder/$date/
+    cp -r ~/.config/neofetch $backup_folder/$date/
 
 
 	sleep 1.5
