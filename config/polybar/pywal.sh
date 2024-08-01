@@ -47,13 +47,13 @@ change_color() {
 	\$fg: ${FG};
 	\$black: ${SH1};
 	\$lightblack: ${SH8};
-	\$red: ${SH1};
-	\$blue: ${SH2};
-	\$cyan: ${SH3};
-	\$magenta: ${SH4};
-	\$green: ${SH5};
-	\$yellow: ${SH6};
-	\$archicon: ${SH2};
+	\$red: #f7768e;
+	\$blue: #7aa2f7;
+	\$cyan: #7dcfff;
+	\$magenta: #bb9af7;
+	\$green: #9ece6a;
+	\$yellow: #e0af68;
+	\$archicon: #0f94d2;
 	EOF
 
 # p10k (Powerlevel10k)

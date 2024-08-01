@@ -40,9 +40,11 @@ get_name() {
 
 toggle() {
 	if [[ $(bluetoothctl show | grep "Powered" | awk '{print $2}') == "no" ]]; then
+		echo "Turning Bluetooth on"
 		bluetoothctl power on
 		dunstify --icon=bluetooth --appname=Bluetooth --urgency=normal "Bluetooth" "Bluetooth has been turned on."
 	else
+		echo "Turning Bluetooth off"
 		bluetoothctl power off
 		dunstify --icon=bluetooth-disabled --appname=Bluetooth --urgency=normal "Bluetooth" "Bluetooth has been turned off."
 	fi
@@ -53,4 +55,5 @@ case "$1" in
   --icon) get_icon ;;
   --name) get_name ;;
   --toggle) toggle ;;
+  *) echo "Usage: $0 {--status|--icon|--name|--toggle}" ;;
 esac

@@ -53,7 +53,7 @@ else
 	sleep 1
 	echo -e "\n\n${blueColour}[*] Installing necessary packages for the environment...\n${endColour}"
 	sleep 2
-	sudo apt install -y kitty rofi feh xclip ranger betterlockscreen  scrot scrub wmname imagemagick cmatrix htop neofetch python3-pip procps tty-clock fzf lsd bat pamixer flameshot playerctl
+	sudo apt install -y kitty rofi feh xclip ranger betterlockscreen  scrot scrub wmname imagemagick cmatrix htop neofetch python3-pip procps tty-clock fzf lsd bat pamixer flameshot playerctl bluez dunst gawk blueman
 	if [ $? != 0 ] && [ $? != 130 ]; then
 		echo -e "\n${redColour}[-] Failed to install some packages!\n${endColour}"
 		exit 1
@@ -223,7 +223,6 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 
 	echo -e "\n${purpleColour}[*] Installing Oh My Zsh and Powerlevel10k for user $user...\n${endColour}"
 	sleep 2
- 	rm -rf /home/zelaya/.oh-my-zsh/custom/themes/powerlevel10k && sudo rm -rf   /root/.oh-my-zsh/custom/themes/powerlevel10k
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 	if [ $? != 0 ] && [ $? != 130 ]; then
@@ -249,7 +248,7 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 	echo -e "\n${blueColour}[*] Starting configuration of fonts, wallpaper, configuration files, .zshrc, .p10k.zsh, and scripts...\n${endColour}"
 	sleep 0.5
 
- 	echo -e "\n${purpleColour}[*] Configuring fonts...\n${endColour}"
+	echo -e "\n${purpleColour}[*] Configuring fonts...\n${endColour}"
 	sleep 2
 	if [[ -d "$fdir" ]]; then
 		cp -rv $dir/fonts/* $fdir
@@ -259,35 +258,6 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 	fi
 	echo -e "\n${greenColour}[+] Done\n${endColour}"
 	sleep 1.5
-
-	echo -e "\n${purpleColour}[*] Configuring wallpaper...\n${endColour}"
-	sleep 2
-	if [[ -d "~/Wallpapers" ]]; then
-		cp -rv $dir/wallpapers/* ~/Wallpapers
-	else
-		mkdir ~/Wallpapers
-		cp -rv $dir/wallpapers/* ~/Wallpapers
-	fi
-	wal -nqi ~/Wallpapers/archkali.png
-	sudo wal -nqi ~/Wallpapers/archkali.png
-	echo -e "\n${greenColour}[+] Done\n${endColour}"
-	sleep 1.5
-
-	echo -e "\n${purpleColour}[*] Configuring configuration files...\n${endColour}"
-	sleep 2
-	cp -rv $dir/config/* ~/.config/
-	echo -e "\n${greenColour}[+] Done\n${endColour}"
-	sleep 1.5
-
-	echo -e "\n${purpleColour}[*] Configuring the .zshrc and .p10k.zsh files...\n${endColour}"
-	sleep 2
-	cp -v $dir/.zshrc ~/.zshrc
-	sudo ln -sfv ~/.zshrc /root/.zshrc
-	cp -v $dir/.p10k.zsh ~/.p10k.zsh
-	sudo ln -sfv ~/.p10k.zsh /root/.p10k.zsh
-	echo -e "\n${greenColour}[+] Done\n${endColour}"
-	sleep 1.5
-
 
  ########## ---------- Backup files ---------- ##########
 
