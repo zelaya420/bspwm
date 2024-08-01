@@ -272,6 +272,7 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
     cp -r ~/.config/bin $backup_folder/$date/
     cp -r ~/.config/rofi $backup_folder/$date/
     cp -r ~/.config/neofetch $backup_folder/$date/
+    echo -e "\n${greenColour}[+] Done\n${endColour}"
 
 
 	sleep 1.5
