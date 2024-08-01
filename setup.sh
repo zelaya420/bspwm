@@ -249,6 +249,17 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 	echo -e "\n${blueColour}[*] Starting configuration of fonts, wallpaper, configuration files, .zshrc, .p10k.zsh, and scripts...\n${endColour}"
 	sleep 0.5
 
+ 	echo -e "\n${purpleColour}[*] Configuring fonts...\n${endColour}"
+	sleep 2
+	if [[ -d "$fdir" ]]; then
+		cp -rv $dir/fonts/* $fdir
+	else
+		mkdir -p $fdir
+		cp -rv $dir/fonts/* $fdir
+	fi
+	echo -e "\n${greenColour}[+] Done\n${endColour}"
+	sleep 1.5
+
 	echo -e "\n${purpleColour}[*] Configuring wallpaper...\n${endColour}"
 	sleep 2
 	if [[ -d "~/Wallpapers" ]]; then
@@ -262,16 +273,21 @@ echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${
 	echo -e "\n${greenColour}[+] Done\n${endColour}"
 	sleep 1.5
 
-	echo -e "\n${purpleColour}[*] Configuring fonts...\n${endColour}"
+	echo -e "\n${purpleColour}[*] Configuring configuration files...\n${endColour}"
 	sleep 2
-	if [[ -d "$fdir" ]]; then
-		cp -rv $dir/fonts/* $fdir
-	else
-		mkdir -p $fdir
-		cp -rv $dir/fonts/* $fdir
-	fi
+	cp -rv $dir/config/* ~/.config/
 	echo -e "\n${greenColour}[+] Done\n${endColour}"
 	sleep 1.5
+
+	echo -e "\n${purpleColour}[*] Configuring the .zshrc and .p10k.zsh files...\n${endColour}"
+	sleep 2
+	cp -v $dir/.zshrc ~/.zshrc
+	sudo ln -sfv ~/.zshrc /root/.zshrc
+	cp -v $dir/.p10k.zsh ~/.p10k.zsh
+	sudo ln -sfv ~/.p10k.zsh /root/.p10k.zsh
+	echo -e "\n${greenColour}[+] Done\n${endColour}"
+	sleep 1.5
+
 
  ########## ---------- Backup files ---------- ##########
 
