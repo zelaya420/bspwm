@@ -63,11 +63,11 @@ ctrl + alt + shift + a
 
 # Aumentar brillo
 super + ctrl + Up
-	brightnessctl -s +10%
+	brightnessctl set +10%
 
 # Disminuir brillo
 super + ctrl + Down
-	brightnessctl -s 10%-
+	brightnessctl set 10%-
 
 #|||----- Atajos de Bspwm -----|||#
 
