@@ -39,9 +39,12 @@ chmod +x setup.sh
 
 ![overview4](/Screenshots/overview4.png "overview4")
 
-![overview4](/Screenshots/overview5.png "overview5")
+![overview5](/Screenshots/overview5.png "overview5")
 
-![overview4](/Screenshots/overview6.png "overview6")
+![overview6](/Screenshots/overview6.png "overview6")
+
+![overview7](/Screenshots/overview7.png "overview7")
+
 
 
 ## Keyboard shortcuts
