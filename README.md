@@ -31,17 +31,17 @@ chmod +x setup.sh
 5. After the script has finished, you will be prompted to restart the system. Once you have rebooted, select `bspwm` as the window manager and then log in.
 
 ## Overview of the environment
-![overview1](/assets/overview1.png "overview1")
+![overview1](/Screenshots/overview1.png "overview1")
 
-![overview2](/assets/overview2.png "overview2")
+![overview2](/Screenshots/overview2.png "overview2")
 
-![overview3](/assets/overview3.png "overview3")
+![overview3](/Screenshots/overview3.png "overview3")
 
-![overview4](/assets/overview4.png "overview4")
+![overview4](/Screenshots/overview4.png "overview4")
 
-![overview4](/assets/overview5.png "overview5")
+![overview4](/Screenshots/overview5.png "overview5")
 
-![overview4](/assets/overview6.png "overview6")
+![overview4](/Screenshots/overview6.png "overview6")
 
 
 ## Keyboard shortcuts
