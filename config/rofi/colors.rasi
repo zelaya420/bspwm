@@ -1,10 +1,13 @@
-/* colors */
+        /* colors */
 
 * {
   al:    #00000000;
-  bg:    #0d0c0bFF;
-  bg1:   #4E504CFF;
-  bg2:   #646762FF;
-  bg3:   #877364FF;
-  fg:    #b4c8daFF;
+  bg:    #1c1616FF;
+  bg1:   #DDB2A3FF;
+  bg2:   #E7CAB9FF;
+  bg3:   #C5C5C5FF;
+  fg:    #f3eae3FF;
+          ac:    #C5C5C5FF;  /* Color de acento */
+          bar:   #EDD7C8FF;  /* Color de barra */
+          bga:   #f3eae3FF;  /* Color de fondo del elemento seleccionado */
 }

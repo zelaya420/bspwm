@@ -53,7 +53,7 @@ else
 	sleep 1
 	echo -e "\n\n${blueColour}[*] Installing necessary packages for the environment...\n${endColour}"
 	sleep 2
-	sudo apt install -y kitty rofi feh xclip ranger betterlockscreen brightnessctl fastfetch scrot scrub jq wmname imagemagick cmatrix htop neofetch python3-pip procps tty-clock fzf lsd bat pamixer flameshot playerctl bluez dunst gawk blueman
+	sudo apt install -y kitty rofi feh xclip ranger betterlockscreen brightnessctl fastfetch scrot scrub jq wmname imagemagick cmatrix htop fastfetch  python3-pip procps tty-clock fzf lsd bat pamixer flameshot playerctl bluez dunst gawk blueman zenity
 	if [ $? != 0 ] && [ $? != 130 ]; then
 		echo -e "\n${redColour}[-] Failed to install some packages!\n${endColour}"
 		exit 1
@@ -77,7 +77,7 @@ else
 	fi
 echo -e "\n${purpleColour}[*] Installing necessary dependencies for pywal...\n${endColour}"
 	sleep 2
-	sudo pip3 install pywal
+	pip install --break-system-packages pywal
 	if [ $? != 0 ] && [ $? != 130 ]; then
 		echo -e "\n${redColour}[-] Failed to install some dependencies for pywal!\n${endColour}"
 		exit 1
@@ -310,7 +310,6 @@ echo -e "\n${purpleColour}[*] Configuring fonts...\n${endColour}"
     cp -r ~/.config/kitty $backup_folder/$date/
     cp -r ~/.config/bin $backup_folder/$date/
     cp -r ~/.config/rofi $backup_folder/$date/
-    cp -r ~/.config/neofetch $backup_folder/$date/
     echo -e "\n${greenColour}[+] Done\n${endColour}"
 
 	sleep 1.5
@@ -326,7 +325,6 @@ echo -e "\n${purpleColour}[*] Configuring fonts...\n${endColour}"
 	cp -rv $dir/config/bin ~/.config/	
 	cp -rv $dir/config/eww ~/.config/
 	cp -rv $dir/config/kitty ~/.config/
-	cp -rv $dir/config/neofetch ~/.config/
 	cp -rv $dir/config/picom ~/.config/
 	cp -rv $dir/config/polybar ~/.config/
 	cp -rv $dir/config/rofi ~/.config/
