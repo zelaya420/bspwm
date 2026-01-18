@@ -150,10 +150,10 @@
 							  :style "margin-left: 10px;"
 							  (label :class "os-icon" 
 									 :halign "start"
-									 :text "  ")
+									 :text "󰣇")
 							  (label :class "pkgs-icon"
 									 :halign "start"
-									 :text "󰮯")
+									 :text "󰣇")
 							  (label :class "wm-icon"
 									 :halign "start"
 									 :text "󱪳")))
