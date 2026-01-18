@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # ______       __ _       _                        _                   _     
 # | ___ \     / _(_)  _  | |  by Zelaya           | |  Zelaya420      | |    
 # | |_/ /___ | |_ _  (_) | | __ _ _   _ _ __   ___| |__   ___ _ __ ___| |__  
@@ -6,7 +8,4 @@
 # \_| \_\___/|_| |_| (_) |_|\__,_|\__,_|_| |_|\___|_| |_|\___|_(_)|___/_| |_|
                                                                            
                                                                           
-
-#!/usr/bin/env bash
-
 rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/launcher.rasi
